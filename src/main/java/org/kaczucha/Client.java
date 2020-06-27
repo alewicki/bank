@@ -3,15 +3,23 @@ package org.kaczucha;
 import java.util.Objects;
 
 public class Client {
+    private String name;
+    private String email;
+    private double balance;
+
     public Client(String name, String email, double balance) {
         this.name = name;
         this.email = email;
         this.balance = balance;
     }
 
-    private String name;
-    private String email;
-    private double balance;
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 
     public String getEmail() {
         return email;

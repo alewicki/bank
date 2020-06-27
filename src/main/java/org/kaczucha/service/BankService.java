@@ -23,7 +23,20 @@ public class BankService {
             String toEmail,
             double amount
     ) {
-
+        if (amount < 0) {
+            throw new IllegalArgumentException("Negative amount is not allowed!");
+        }
+        if (fromEmail.equals(toEmail)) {
+            throw new IllegalArgumentException("fromEmail and toEmail cant be equal!");
+        }
+        Client fromClient = findByEmail(fromEmail);
+        Client toClient = findByEmail(toEmail);
+        if (fromClient.getBalance() - amount >= 0) {
+            fromClient.setBalance(fromClient.getBalance() - amount);
+            toClient.setBalance(toClient.getBalance() + amount);
+        } else {
+            throw new NoSufficientFundsException("Not enough funds!");
+        }
     }
 
 }
