@@ -3,6 +3,8 @@ package org.kaczucha.service;
 import org.kaczucha.Client;
 import org.kaczucha.repository.ClientRepository;
 
+import java.util.Objects;
+
 public class BankService {
     private final ClientRepository clientRepository;
 
@@ -23,9 +25,7 @@ public class BankService {
             String toEmail,
             double amount
     ) {
-        if (amount < 0) {
-            throw new IllegalArgumentException("Negative amount is not allowed!");
-        }
+        validateAmount(amount);
         if (fromEmail.equals(toEmail)) {
             throw new IllegalArgumentException("fromEmail and toEmail cant be equal!");
         }
@@ -39,4 +39,26 @@ public class BankService {
         }
     }
 
+    public void withdraw(
+            final String email,
+            final double amount) {
+        validateAmount(amount);
+        if (Objects.isNull(email)) {
+            throw new IllegalArgumentException("Email cant be null!");
+        }
+        final String lowerCaseEmail = email.toLowerCase();
+        final Client client = findByEmail(lowerCaseEmail);
+        if (amount > client.getBalance()) {
+            throw new NoSufficientFundsException("Balance must be higher or equal then amount!");
+        }
+        final double newBalance = client.getBalance() - amount;
+        client.setBalance(newBalance);
+
+    }
+
+    private void validateAmount(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount must be positive!");
+        }
+    }
 }
