@@ -1,10 +1,21 @@
 package org.kaczucha;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "USERS")
+
 public class Client {
+    @Id
+    @GeneratedValue
+    @Column(name = "USER_ID")
+    private Long id;
+    @Column(name = "FIRST_NAME")
     private String name;
+    @Column(name = "MAIL")
     private String email;
+    @Transient
     private double balance;
 
     public Client(String name, String email, double balance) {
@@ -13,16 +24,39 @@ public class Client {
         this.balance = balance;
     }
 
+    public Client() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public double getBalance() {
         return balance;
     }
 
     public void setBalance(double balance) {
         this.balance = balance;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     @Override
