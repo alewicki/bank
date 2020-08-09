@@ -1,9 +1,9 @@
 package org.kaczucha.repository;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import java.io.File;
-import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
     private static final SessionFactory sessionFactory = buildSessionFactory();
@@ -14,8 +14,7 @@ public class HibernateUtil {
             return new Configuration()
                     .configure(configFile)
                     .buildSessionFactory();
-        }
-        catch (Throwable ex) {
+        } catch (Throwable ex) {
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }

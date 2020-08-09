@@ -2,8 +2,11 @@ package org.kaczucha;
 
 import org.kaczucha.repository.ClientRepository;
 import org.kaczucha.repository.HibernateClientRepository;
+import org.kaczucha.repository.entity.Account;
+import org.kaczucha.repository.entity.Client;
 import org.kaczucha.service.BankService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -39,7 +42,8 @@ public class Main {
     private void printUser(Scanner scanner) {
         System.out.println("Enter email:");
         final String mail = scanner.next();
-        System.out.println(bankService.findByEmail(mail));
+        final Client byEmail = bankService.findByEmail(mail);
+        System.out.println(byEmail);
     }
 
 
@@ -50,6 +54,8 @@ public class Main {
         final String mail = scanner.next();
         System.out.println("Enter balance:");
         final double balance = scanner.nextDouble();
-        bankService.save(new Client(name, mail, balance));
+        final Account account = new Account(balance, "PLN");
+        final List<Account> accounts = List.of(account);
+        bankService.save(new Client(name, mail, accounts));
     }
 }
