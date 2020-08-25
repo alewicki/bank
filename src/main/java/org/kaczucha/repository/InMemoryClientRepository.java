@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class InMemoryClientRepository implements ClientRepository {
-    private List<Client> clients;
+    private final List<Client> clients;
 
     public InMemoryClientRepository(List<Client> clients) {
         this.clients = clients;
