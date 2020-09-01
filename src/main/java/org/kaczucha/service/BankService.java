@@ -1,23 +1,19 @@
 package org.kaczucha.service;
 
-import org.kaczucha.repository.ClientRepository;
-import org.kaczucha.repository.annotation.HibernateRepository;
-import org.kaczucha.repository.annotation.InMemoryRepository;
-import org.kaczucha.repository.annotation.JdbcRepository;
+import org.kaczucha.repository.ClientSpringJpaRepository;
 import org.kaczucha.repository.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
 @Service
 public class BankService {
-    private final ClientRepository clientRepository;
+    private final ClientSpringJpaRepository clientRepository;
 
     @Autowired
     public BankService(
-            @HibernateRepository ClientRepository clientRepository
+            ClientSpringJpaRepository clientRepository
     ) {
         this.clientRepository = clientRepository;
     }
