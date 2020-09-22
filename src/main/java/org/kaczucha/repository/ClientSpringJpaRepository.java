@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface ClientSpringJpaRepository extends JpaRepository<Client, Long> {
 
-    @Query("SELECT c FROM Client c join Account a on c.id=a.userId where c.email= :email ")
-    Client findByEmail(@Param("email") String email);
+//    @Query("SELECT c FROM Client c join Account a on c.id=a.userId where c.email= :email ")
+    Client findByEmail(String email);
 
     List<Client> findByName(String name);
 
