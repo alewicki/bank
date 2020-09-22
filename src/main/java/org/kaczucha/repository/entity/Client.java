@@ -1,5 +1,7 @@
 package org.kaczucha.repository.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,8 @@ import java.util.List;
 @Table(name = "USERS")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Client {
     @Id
     @GeneratedValue

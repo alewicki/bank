@@ -1,8 +1,11 @@
 package org.kaczucha.service;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.kaczucha.repository.ClientSpringJpaRepository;
-import org.kaczucha.repository.entity.*;
+import org.kaczucha.repository.entity.Account;
+import org.kaczucha.repository.entity.Client;
 
 import static java.util.Collections.singletonList;
 import static org.mockito.Mockito.*;
@@ -15,7 +18,8 @@ public class BankServiceTest {
     @BeforeEach
     public void setup() {
         repository = mock(ClientSpringJpaRepository.class);
-        service = new BankService(repository);
+        ClientMapper mapper = mock(ClientMapper.class);
+        service = new BankService(repository, mapper);
     }
 
     @Test
